@@ -4,11 +4,12 @@ const http = require('http');
 // const https = require('https');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 const app = express();
 // const privateKey = fs.readFileSync('/etc/ssl/private/private.key', 'utf8');
 // const certificate = fs.readFileSync('/etc/ssl/certificate.crt', 'utf8');
 // const credentials = { key: privateKey, cert: certificate };
-const port = 1200;
+const port = process.env.Port_Api;
 // const portSSL = 1300;
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

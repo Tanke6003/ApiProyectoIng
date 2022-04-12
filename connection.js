@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var connection = mysql.createPool({
-  host: 'localhost',
+  host: process.env.Host_MySql,
   user: 'root', 
   password: '',
   database: 'notes',
