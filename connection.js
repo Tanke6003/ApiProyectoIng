@@ -1,9 +1,9 @@
 var mysql = require('mysql');
 var connection = mysql.createPool({
   host: process.env.Host_MySql,
-  user: 'root', 
-  password: '',
-  database: 'notes',
+  user: process.env.User_MySql, 
+  password: process.env.Password_MySql,
+  database: process.env.DB_MySql,
   charset: 'utf8mb4'
 });
 
