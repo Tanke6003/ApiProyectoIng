@@ -2,6 +2,7 @@
 const pageInitController = require('./controllers/pageInit');
 const UserAuthController = require('./controllers/user');
 const noteController     = require('./controllers/note'); */
+const materialController = require('./controllers/materialController');
 const loadRoutes = (app) => {
 /*     //PageInitialization
     app.get('/pageInit/home',pageInitController.home);
@@ -18,6 +19,8 @@ const loadRoutes = (app) => {
     //edit note
     app.post('/edit-note/getNote',noteController.getNote);
     app.post('/edit-note/editNote',noteController.editNote); */
+    app.post('/materials',materialController.getMaterials);
+    app.post('/materials',materialController.getMaterials);
 }
 module.exports = {
     loadRoutes

@@ -1,9 +1,11 @@
 var mysql = require('mysql');
 var connection = mysql.createPool({
   host: process.env.Host_MySql,
-  user: process.env.User_MySql, 
-  password: process.env.Password_MySql,
-  database: process.env.DB_MySql,
+  //user: process.env.User_MySql, 
+  user: 'root',
+  password:'',
+  //database: process.env.DB_MySql,
+  database: 'ingsoft',
   charset: 'utf8mb4'
 });
 
