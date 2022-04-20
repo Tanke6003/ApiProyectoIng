@@ -20,7 +20,10 @@ const loadRoutes = (app) => {
     app.post('/edit-note/getNote',noteController.getNote);
     app.post('/edit-note/editNote',noteController.editNote); */
     app.post('/materials',materialController.getMaterials);
-    app.post('/materials',materialController.getMaterials);
+    app.post('/materials/createMaterial',materialController.createMaterial);
+    app.post('/materials/material/inhabilite',materialController.inhabiliteMaterial);
+    app.post('/materials/material/habilite',materialController.habiliteMaterial);
+    app.post('/materials/material/edit',materialController.editMaterial);
 }
 module.exports = {
     loadRoutes

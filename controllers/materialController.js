@@ -1,11 +1,11 @@
 const materialModel         = require('../models/materialModel');
 const constants             = require('../constants');
-const PoolNamespace = require('mysql/lib/PoolNamespace');
-/* async function registerMaterial(req, res) {
+async function createMaterial(req, res) {
     try {
         //verifica que no exista un empleado registrado con el mismo rfc
-        let exist = await materialModel.getMaterial(req.body.name);
-        if (exist) {
+        let name = "%" + req.body.name + "%"
+        let exist = await materialModel.searchMaterials(req.body.name,name);
+        if (exist!="") {
             let data = {
                 errorMessage: 'El nombre que quieres usar ya existe en la base de datos',
                 status: false
@@ -14,7 +14,7 @@ const PoolNamespace = require('mysql/lib/PoolNamespace');
         return;
         }
         else{
-            await materialModel.registerMaterial({
+            await materialModel.createMaterial({
                 name: req.body.name,
                 description: req.body.description,
                 stock:req.body.stock
@@ -22,8 +22,7 @@ const PoolNamespace = require('mysql/lib/PoolNamespace');
             let data = {
                 status: true
             }
-            res.send(data);
-            console.log(req.body);           
+            res.send(data);       
         }
     } catch (ex) {
         console.log(ex);
@@ -34,7 +33,7 @@ const PoolNamespace = require('mysql/lib/PoolNamespace');
         }
         res.status(500).send(data);
     }
-} */
+}
 async function getMaterials(req, res) {
     try {
         //verifica que no exista un empleado registrado con el mismo rfc
@@ -78,11 +77,11 @@ async function getMaterials(req, res) {
         }
         res.status(500).send(data);
     }
-}/* 
-async function editMaterial(req, res){
+}
+async function inhabiliteMaterial(req, res){
     try {
-        let echo = await materialModel.editMaterial({
-            description: req.body.description
+        let echo = await materialModel.inhabiliteMaterial({
+            id: req.body.id
         });
         if(echo){
         let data = {
@@ -100,9 +99,55 @@ async function editMaterial(req, res){
         }
         res.status(500).send(data);
     }
-} */
+} 
+async function habiliteMaterial(req, res){
+    try {
+        let echo = await materialModel.habiliteMaterial({
+            id: req.body.id
+        });
+        if(echo){
+        let data = {
+            status: true
+        }
+        res.send(data);
+    } 
+    } catch (ex) {
+        console.log(ex);
+        let data = {
+            errorMessage: constants.CATCH_MESSAGE,
+            errorData: ex,
+            status: false
+        }
+        res.status(500).send(data);
+    }
+} 
+
+async function editMaterial(req, res){
+    try {
+        let echo = await materialModel.editMaterial({
+            description: req.body.description,
+            idMaterial:req.body.id
+        });
+        if(echo){
+        let data = {
+            status: true
+        }
+        res.send(data);
+    } 
+    } catch (ex) {
+        console.log(ex);
+        let data = {
+            errorMessage: constants.CATCH_MESSAGE,
+            errorData: ex,
+            status: false
+        }
+        res.status(500).send(data);
+    }
+}
 module.exports={
-    //registerMaterial,
+    createMaterial,
     getMaterials,
-    //editMaterial
+    inhabiliteMaterial,
+    habiliteMaterial,
+    editMaterial
 }
