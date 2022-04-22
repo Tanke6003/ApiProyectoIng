@@ -36,7 +36,6 @@ function editMaterial({description,idMaterial}){
     `
     return connection.runQuery(query,[description,idMaterial]);
 }
-
 module.exports={
     getMaterials,
     searchMaterials,

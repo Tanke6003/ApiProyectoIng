@@ -121,7 +121,6 @@ async function habiliteMaterial(req, res){
         res.status(500).send(data);
     }
 } 
-
 async function editMaterial(req, res){
     try {
         let echo = await materialModel.editMaterial({
